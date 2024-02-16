@@ -1,12 +1,17 @@
 <template>
-  <Navbar/> 
-  <router-view/> 
+  <Navbar :key="componentKey"/> 
+  <router-view @forceRerender="componentKey++"/> 
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
 
 export default {
+  data() {
+    return {
+      componentKey: 0,
+    };
+  },
   name: 'App',
   components: {
     Navbar
@@ -21,6 +26,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /* margin-top: 60px; */
 }
 </style>

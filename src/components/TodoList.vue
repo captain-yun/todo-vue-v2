@@ -91,6 +91,7 @@ export default {
     },
     mounted() {
         this.fetchTodosAPI();
+        this.$emit('forceRerender')
     },
     components: { TodoItem }
 }

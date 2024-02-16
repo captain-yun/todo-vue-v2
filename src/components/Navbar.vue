@@ -1,11 +1,29 @@
 <template>
   <ul class="nav-links">
-    <li><a href="/login">Login</a></li>
-    <!-- <li><a href="/logout">Logout</a></li> -->
+    <li v-if="!isLogin"><a href="/login">Login</a></li>
+    <li v-if="isLogin"><a @click="logout">Logout</a></li>
     <li class="center"><a href="/signup">SignUp</a></li>
     <li class="upward"><a href="/todos">Todos</a></li>
   </ul>
 </template>
+<script>
+export default {
+  computed : {
+    isLogin() {
+      return this.$cookies.isKey('loginEmail') ? true : false;
+    }
+  },
+  methods : {
+    logout() {
+      this.axios.get('/api/logout')
+      .then((res) => {
+        this.$cookies.remove('loginEmail')
+        this.$router.push('/login')
+      })
+    }
+  }
+}
+</script>
 <style scoped>
 /* Google Fonts Import Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');

@@ -31,6 +31,9 @@
 </template>
 <script>
 export default {
+  mounted() {
+    this.$emit('forceRerender')
+  },
   data() {
     return {
       email : "",
@@ -45,8 +48,9 @@ export default {
         password : this.password,
         rememberEmail : this.rememberEmail
       }).then((res) => {
-        if (res.data.trim() == 'ok') {
+        if (res.data == 'ok') {
           // this.$router.push('/todos')
+          this.$cookies.set('loginEmail', "ok");
           this.$router.replace('/todos')
           // window.location.href = "/todos";
         } else {

@@ -16,7 +16,7 @@ const routes = [
   {
     path: '/signup', component:SignUp
   },
-]; //라우팅 패스, 컴포넌트 등 정의
+];
 
 const router = createRouter({
   history: createWebHistory(),
