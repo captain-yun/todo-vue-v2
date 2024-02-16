@@ -4,18 +4,18 @@
         <div class="title">
         LOGIN FORM
         </div>
-        <form action="/login" method="post">
+        <form @submit.prevent="tryLogin">
         <div class="field">
-            <input name="email" type="text" required>
+            <input name="email" type="text" v-model="email" required>
             <label>이메일 주소</label>
         </div>
         <div class="field">
-            <input name="password" type="password" required>
+            <input name="password" type="password" v-model="password" required>
             <label>비밀번호</label>
         </div>
         <div class="content">
             <div class="checkbox">
-                <input name="rememberEmail" type="checkbox" id="remember-me">
+                <input name="rememberEmail" type="checkbox" id="remember-me" v-model="rememberEmail">
                 <label for="remember-me">이메일 주소 저장</label>
             </div>
         </div>
@@ -29,6 +29,39 @@
     </div>
 </body>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      email : "",
+      password : "",
+      rememberEmail : false
+    }
+  },
+  methods : {
+    tryLogin() {
+      this.axios.post('/api/login', {
+        email : this.email,
+        password : this.password,
+        rememberEmail : this.rememberEmail
+      }).then((res) => {
+        if (res.data.trim() == 'ok') {
+          // this.$router.push('/todos')
+          this.$router.replace('/todos')
+          // window.location.href = "/todos";
+        } else {
+          alert('로그인에 실패하였습니다.')
+        }
+        // window.location.href = "/todos";
+      }).catch((res) => {
+        console.error(res)
+        alert(res)
+      });
+      console.log("뭐야")
+    }
+  }
+}
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 *{

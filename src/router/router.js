@@ -5,6 +5,9 @@ import SignUp from '../components/SignUp'
 
 const routes = [
   {
+    path: '/', component:LoginPage
+  },
+  {
     path: '/todos', component:TodoList
   },
   {
@@ -13,9 +16,6 @@ const routes = [
   {
     path: '/signup', component:SignUp
   },
-//   {
-//     path: '/1', component:FirstView
-//   },
 ]; //라우팅 패스, 컴포넌트 등 정의
 
 const router = createRouter({

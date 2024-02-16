@@ -1,8 +1,9 @@
 <template>
   <ul class="nav-links">
-    <li><a href="#">Login</a></li>
-    <li class="center"><a href="#">SignUp</a></li>
-    <li class="upward"><a href="#">Todos</a></li>
+    <li><a href="/login">Login</a></li>
+    <!-- <li><a href="/logout">Logout</a></li> -->
+    <li class="center"><a href="/signup">SignUp</a></li>
+    <li class="upward"><a href="/todos">Todos</a></li>
   </ul>
 </template>
 <style scoped>
